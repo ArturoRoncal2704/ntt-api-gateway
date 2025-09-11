@@ -9,3 +9,12 @@ spring:
           filters:
               - StripPrefix=1
               - PrefixPath=/api/v1
+
+           - id: accounts
+          uri: lb://account-service
+          predicates:
+            - Path=/api/accounts,/api/accounts/**
+          filters:
+              - StripPrefix=1
+              - PrefixPath=/api/v1
+         
