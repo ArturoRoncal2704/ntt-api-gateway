@@ -7,14 +7,30 @@ spring:
           predicates:
             - Path=/api/customers,/api/customers/**
           filters:
-              - StripPrefix=1
-              - PrefixPath=/api/v1
+            - StripPrefix=1
+            - PrefixPath=/api/v1
 
-           - id: accounts
+        - id: accounts
           uri: lb://account-service
           predicates:
             - Path=/api/accounts,/api/accounts/**
           filters:
-              - StripPrefix=1
-              - PrefixPath=/api/v1
-         
+            - StripPrefix=1
+            - PrefixPath=/api/v1
+
+        - id: cards
+          uri: lb://cards-service
+          predicates:
+            - Path=/api/cards,/api/cards/**
+          filters:
+            - StripPrefix=1
+            - PrefixPath=/api/v1
+
+        - id: walletpayments
+          uri: lb://walletpaymentsservice
+          predicates:
+            - Path=/api/walletpayments,/api/walletpayments/**
+          filters:
+            - StripPrefix=1
+            - PrefixPath=/api/v1
+
