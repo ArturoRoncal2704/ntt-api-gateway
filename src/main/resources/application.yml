@@ -1,36 +1,13 @@
 spring:
+  application:
+    name: api-gateway
+  config:
+    import: optional:configserver:http://localhost:8888
   cloud:
-    gateway:
-      routes:
-        - id: customers
-          uri: lb://customers-service
-          predicates:
-            - Path=/api/customers,/api/customers/**
-          filters:
-            - StripPrefix=1
-            - PrefixPath=/api/v1
-
-        - id: accounts
-          uri: lb://account-service
-          predicates:
-            - Path=/api/accounts,/api/accounts/**
-          filters:
-            - StripPrefix=1
-            - PrefixPath=/api/v1
-
-        - id: cards
-          uri: lb://cards-service
-          predicates:
-            - Path=/api/cards,/api/cards/**
-          filters:
-            - StripPrefix=1
-            - PrefixPath=/api/v1
-
-        - id: walletpayments
-          uri: lb://walletpaymentsservice
-          predicates:
-            - Path=/api/walletpayments,/api/walletpayments/**
-          filters:
-            - StripPrefix=1
-            - PrefixPath=/api/v1
-
+    config:
+      label: main
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8091/realms/nttdatabank
