@@ -1,0 +1,19 @@
+services:
+  api-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ntt/api-gateway:0.0.1
+    container_name: api-gateway
+    ports:
+      - "8190:8190"
+    environment:
+      SPRING_CONFIG_IMPORT: optional:configserver:http://config-server:8888
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - infra-net
+
+networks:
+  infra-net:
+    external: true
