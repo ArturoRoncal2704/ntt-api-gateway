@@ -1,3 +1,4 @@
+
 services:
   api-gateway:
     build:
@@ -11,6 +12,8 @@ services:
       SPRING_CONFIG_IMPORT: optional:configserver:http://config-server:8888
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
       SPRING_PROFILES_ACTIVE: docker
+      APP_AUTH_ALLOWED_ISSUERS: "http://keycloak:8091/realms/nttdatabank,http://localhost:8091/realms/nttdatabank"
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: http://keycloak:8091/realms/nttdatabank
     networks:
       - infra-net
 

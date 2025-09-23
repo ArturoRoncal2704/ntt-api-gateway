@@ -11,3 +11,6 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8091/realms/nttdatabank
+  app:
+    auth:
+      allowed-issuers: "http://keycloak:8091/realms/nttdatabank,http://localhost:8091/realms/nttdatabank"
